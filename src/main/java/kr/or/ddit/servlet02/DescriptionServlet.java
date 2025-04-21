@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +27,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *  		destroy(소멸 직전)
  *  	요청 callback : 매 요청마다 반복적으로 실행. 
  *  		service : 요청 발생 시 컨테이너가 직접 실행 -> 요청의 종류상관없이 모든 종류에 요청에서 처리하고 싶은경우
- *  		 do~	: http method에 따라 service 메소드 내에서 실행 -> 특정 요청에만 처리하고 싶은경우
+ *  		doXXXX	: http method에 따라 service 메소드 내에서 실행 -> 특정 요청에만 처리하고 싶은경우
  *  3) 서블릿 컨테이너에 서블릿 등록.
  *  	servlet 2.x : web.xml에 등록
  *  	servlet 3.x : @WebServlet 으로 등록
