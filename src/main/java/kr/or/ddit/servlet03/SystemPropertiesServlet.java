@@ -2,7 +2,6 @@ package kr.or.ddit.servlet03;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map.Entry;
 import java.util.Properties;
 
 import jakarta.servlet.ServletConfig;
