@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/05/factorial")
 public class FactorialServletJSON extends HttpServlet{
 	long factorial(int op) {
-		if(op <= 0) throw new IllegalArgumentException();
+		if(op <= 0) throw new IllegalArgumentException("양의 정수만 처리함");
 		if(op == 1) return 1;
 		return op * factorial(op - 1);
 	}
@@ -38,7 +38,7 @@ public class FactorialServletJSON extends HttpServlet{
 			Gson gson = new Gson();
 			
 			String json = gson.toJson(map);
-			
+			resp.setContentType("application/json;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
 			out.print(json);
 			
