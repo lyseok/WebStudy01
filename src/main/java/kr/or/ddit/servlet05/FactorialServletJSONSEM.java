@@ -27,7 +27,7 @@ public class FactorialServletJSONSEM extends HttpServlet{
 		 * 3. 문자열 파라미터를 숫자로 파싱
 		 * 4. 연산 실행
 		 * 5. {"result":55} 형태 json생성
-		 * 6. MIME 결정 후 응답 기록
+		 * 6. MIME 결정 후 응답 기록 
 		 */
 		String opParam = req.getParameter("op");
 		
