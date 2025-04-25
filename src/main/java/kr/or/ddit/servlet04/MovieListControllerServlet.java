@@ -27,13 +27,14 @@ public class MovieListControllerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		File folder = new File(folderPath);
 		String[] children = folder.list();
-		String options = Arrays.stream(children).filter((fn)->{
-			String mime = application.getMimeType(fn);
-			return mime!=null && mime.startsWith("video/");
-		}).map((fn)->String.format("<option>%s</option>", fn))
-		.collect(Collectors.joining("\n"));
-		
-		req.setAttribute("options", options);
+//		String options = Arrays.stream(children).filter((fn)->{
+//			String mime = application.getMimeType(fn);
+//			return mime!=null && mime.startsWith("video/");
+//		}).map((fn)->String.format("<option>%s</option>", fn))
+//		.collect(Collectors.joining("\n"));
+//		
+//		req.setAttribute("options", options);
+		req.setAttribute("children", children);
 		req.getRequestDispatcher("/WEB-INF/views/04/movieList.jsp").forward(req, resp);
 	}
 }

@@ -9,7 +9,8 @@
 <body>
 	<form>
 		<select name="video" onchange="chacngeHandler(event);">
-		<%=request.getAttribute("options") %>		
+<%-- 		<%=request.getAttribute("options") %>		 --%>
+		${children }
 		</select>
 	</form>
 	<div id='resultArea'></div>

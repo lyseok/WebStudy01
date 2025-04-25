@@ -9,7 +9,7 @@
 <body>
 
 <form method="post">
-	<input type="number" name="op" min="1" max="10" value="${op}" required="required"/>=${result}, <%=session.getAttribute("result") %>
+	<input type="number" name="op" min="1" max="10" value="${op}" required="required"/>=${result}
 	<%
 		session.removeAttribute("op");
 		session.removeAttribute("result");
