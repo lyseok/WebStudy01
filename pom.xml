@@ -48,5 +48,12 @@
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+		<!-- Commons 계열 -->
+		<!-- java bean대상 리플렉션 지원 -->
+		<dependency>
+		    <groupId>commons-beanutils</groupId>
+		    <artifactId>commons-beanutils</artifactId>
+		    <version>1.10.1</version>
+		</dependency>
 	</dependencies>
 </project>
