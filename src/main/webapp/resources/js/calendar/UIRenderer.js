@@ -29,6 +29,7 @@ function initForm({ setYear, setMonth, setLocale, setZone }){
   value => selectEl.value = value
   setYear(today.getFullYear());
   setMonth(today.getMonth());
+  setLocale(navigator.language);
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
