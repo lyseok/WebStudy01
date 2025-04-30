@@ -56,6 +56,7 @@ public class FormProcessServlet extends HttpServlet{
 		StudentVO commandObject = new StudentVO();
 //		commandObject.setName(req.getParameter("name"));
 		try {
+			// reflection
 			BeanUtils.populate(commandObject, req.getParameterMap());
 			return commandObject;
 		} catch (IllegalAccessException | InvocationTargetException e) {

@@ -13,7 +13,7 @@ import java.util.Objects;
  * get[set]프로퍼티명 -> camel case표기
  * 4. vo의 상태를 비교할 수 있는 인터페이스 제공(equals)
  * 5. vo의 상태를 확인할 수 있는 인터페이스 제공(toString)
- * 6. 직렬화 가능 선언
+ * 6. 직렬화 가능 선언 (Serializable)
  */
 public class StudentVO implements Serializable{
 	private String id;
