@@ -1,6 +1,7 @@
 package kr.or.ddit.calendar;
 
 import java.time.Month;
+import java.time.ZoneId;
 import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.Locale;
@@ -32,12 +33,20 @@ public class UIMetaDatas{
 						)
 					);
 		
-		timezone = TimeZone.getAvailableIDs();
+		zoneIds = ZoneId.getAvailableZoneIds()
+					.stream()
+					.map(TimeZone::getTimeZone)
+					.collect(
+						Collectors.toMap(
+							tz->tz.getID(),
+							tz->tz.getDisplayName())
+					);
+		
 		
 	}
 	
 	private String[] months;
 	private Map<String, String> locales;
-	private String[] timezone;
+	private Map<String, String> zoneIds;
 	
 }

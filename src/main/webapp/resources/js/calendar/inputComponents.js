@@ -36,7 +36,7 @@ function SelectComponent({name, metaData}){
   // 3.{엘리먼트 반환, 엘리먼트의value 변경함수}
   return {
     element: selectEl,
-    setValue:  value => el.value = value
+    setValue:  value => selectEl.value = value
     
   }
 }
