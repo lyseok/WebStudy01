@@ -28,7 +28,7 @@ public class UIMetaDatas{
 					.stream(Locale.getAvailableLocales())
 					.collect(Collectors.toMap(
 							l->l.toLanguageTag(), 
-							l->l.getDisplayName(),
+							l->l.getDisplayLanguage(l),
 							(v1, v2)->v1
 						)
 					);
