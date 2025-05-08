@@ -3,8 +3,11 @@ package kr.or.ddit.mbti;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.Properties;
+
+import com.google.gson.Gson;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
@@ -21,7 +24,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * HttpSession
  * ServletContext : 하나의 어플리케이션내에서 싱글톤이다
  */
-@WebServlet("/mbti/form")
+@WebServlet(loadOnStartup = 1, value = "/mbti/form")
 public class MbtiFormController extends HttpServlet{
 	private Properties mbtiProps;
 	private ServletContext application;
@@ -45,7 +48,19 @@ public class MbtiFormController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("mbtiProps", mbtiProps);
-		req.getRequestDispatcher("/WEB-INF/views/mbti/mbtiForm.jsp").forward(req, resp);
+		String accept = req.getHeader("accept");
+		if(accept.contains("json")) {
+			resp.setContentType("application/json");
+			try (PrintWriter out = resp.getWriter()) {
+				out.print(new Gson().toJson(mbtiProps));
+			}
+		} else {
+			req.setAttribute("mbtiProps", mbtiProps);
+			String contentPage = "/WEB-INF/views/mbti/mbtiForm.jsp";
+			
+			req.setAttribute("contentPage", contentPage);
+			req.getRequestDispatcher("/WEB-INF/views/mbti/mbtiModule/layout.jsp").forward(req, resp);			
+		}
+		
 	}
 }

@@ -2,7 +2,11 @@ const selectEl = document.querySelector('#mbtiSelect');
 const resultEl = document.querySelector('#result');
 
 const getOption = async () => {
-  let res = await fetch("../../csr/mbti/form");
+  let res = await fetch("../../csr/mbti/form", {
+						headers: {
+							"accept":"application/json"
+						}
+					});
   let data = await res.json();
 
   Object.entries(data).forEach(([key, value]) => {

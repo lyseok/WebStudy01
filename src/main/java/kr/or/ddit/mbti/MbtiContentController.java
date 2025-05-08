@@ -27,6 +27,8 @@ public class MbtiContentController extends HttpServlet {
 		
 		// 1. 데이터 받아오기
 		String mbtiType = req.getParameter("mbtiType");
+		String layout = req.getParameter("layout");
+		
 		System.out.println(mbtiType);
 		// 2-1. 입력받은 데이터가 있는지
 		if(mbtiType == null || mbtiType.isEmpty()) {
@@ -38,13 +40,21 @@ public class MbtiContentController extends HttpServlet {
 			 resp.sendError(HttpServletResponse.SC_NOT_FOUND, String.format("%s에 해당하는 mbti는 없음", mbtiType));
 			 return;
 		 }
-	
+		 
 		 // 3. 있다면 해당 데이터의 jsp로 forward
 		 String prefix = "/WEB-INF/views/mbti/";
 		 String suffix = ".html";
 		 String path = prefix + mbtiType + suffix;
+		 String contentPage = path;
 		 
 		 // 4. 이동 방식 결정
-		 req.getRequestDispatcher(path).forward(req, resp);
+		 if(layout!=null&&layout.equals("none")) {
+			 // 비동기 요청으로 fragment한 경우
+			 req.getRequestDispatcher(path).forward(req, resp);			 
+		 } else {
+			 req.setAttribute("contentPage", contentPage);
+			 req.getRequestDispatcher("/WEB-INF/views/mbti/mbtiModule/layout.jsp").forward(req, resp);			 
+		 }
+		 
 	}
 }
