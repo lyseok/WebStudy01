@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath }/10/renderDesc.jsp">새로운 유형 추가</a>
+<a href="${pageContext.request.contextPath }/10/redirectDesc.jsp">새로운 유형 추가</a>
 <form action="${pageContext.request.contextPath }/mbti">
 	<select name="mbtiType" onchange="this.form.requestSubmit();">
 		<c:forEach items="${mbtiProps }" var="mbti">
