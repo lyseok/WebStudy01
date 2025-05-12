@@ -76,6 +76,10 @@ public class LoginCheckServlet extends HttpServlet{
 			// 4-1. 인증 여부 판단
 			if(authenticate(username, password)) {
 				// 4-2. 인증 성공: 웰컴페이지 이동
+				// 1) Principal 구현 객체 생성
+				// 2) request.getUserPrincipal에서 반환될 수 있도록 세팅
+				// --> Web Filter의 활용
+				
 				dest = "/";
 				session.setAttribute("authUser", username);
 			} else {

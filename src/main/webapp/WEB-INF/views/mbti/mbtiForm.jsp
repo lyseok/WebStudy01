@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>요기 타이틀, 로그인 되어있는 사용자의 정보 : <%=request.getUserPrincipal().getName() %>${pageContext.request.userPrincipal.name }</h1>
 <a href="${pageContext.request.contextPath }/10/redirectDesc.jsp">새로운 유형 추가</a>
 <form action="${pageContext.request.contextPath }/mbti">
 	<select name="mbtiType" onchange="this.form.requestSubmit();">

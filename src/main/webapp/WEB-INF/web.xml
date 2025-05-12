@@ -16,4 +16,32 @@
 		<servlet-name>DescriptionServlet</servlet-name>
 		<url-pattern>/desc</url-pattern>
 	</servlet-mapping>
+	
+<!-- 	<security-constraint> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>일반 사용자용 자원</web-resource-name> -->
+<!-- 			<url-pattern>/calendar/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<auth-constraint> -->
+<!-- 			<role-name>ROLE_USER</role-name> -->
+<!-- 		</auth-constraint> -->
+<!-- 	</security-constraint> -->
+	
+<!-- 	<security-constraint> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>관리자용 자원</web-resource-name> -->
+<!-- 			<url-pattern>/mbti/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<auth-constraint> -->
+<!-- 			<role-name>ROLE_ADMIN</role-name> -->
+<!-- 		</auth-constraint> -->
+<!-- 	</security-constraint> -->
+<!-- 	<login-config> -->
+	
+<!-- 		<auth-method>FORM</auth-method> -->
+<!-- 		<form-login-config> -->
+<!-- 			<form-login-page>/11/dummyLoginForm.jsp</form-login-page> -->
+<!-- 			<form-error-page>/11/dummyLoginForm.jsp?error=true</form-error-page> -->
+<!-- 		</form-login-config> -->
+<!-- 	</login-config> -->
 </web-app>
