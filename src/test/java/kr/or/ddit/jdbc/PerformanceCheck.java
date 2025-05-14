@@ -188,4 +188,17 @@ class PerformanceCheck {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	void booltest() {
+		
+		System.out.println(testbool(3));
+		if(testbool(3)) {
+			System.out.println("이거 3임");
+		}
+		
+	}
+	boolean testbool(int num) {
+		return 3 == num;
+	}
 }
