@@ -98,7 +98,7 @@ public class LoginCheckServlet extends HttpServlet{
 				// --> Web Filter의 활용
 				
 				dest = "/";
-				session.setAttribute("authUser", username);
+				session.setAttribute("authUser", inputData);
 			} else {
 				// 4-3. 인증 실패 : 로그인 페이지 이동
 				dest = "/login/loginForm.jsp";

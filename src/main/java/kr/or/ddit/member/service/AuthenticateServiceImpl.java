@@ -1,5 +1,9 @@
 package kr.or.ddit.member.service;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.commons.beanutils.BeanUtils;
+
 import kr.or.ddit.member.dao.MemberDAO;
 import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.member.vo.MemberVO;
@@ -17,7 +21,18 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 		if(saved!=null) {
 			String inputPass = inputData.getMemPassword();
 			String savedPass = saved.getMemPassword();
-			return savedPass.equals(inputPass);
+			boolean result = savedPass.equals(inputPass);
+			if(result) {
+//				inputData.setMemName(saved.getMemName());
+//				inputData.setMemMail(saved.getMemMail());
+//				inputData.setMemBir(saved.getMemBir());
+				try {
+					BeanUtils.copyProperties(inputData, saved);
+				} catch (IllegalAccessException | InvocationTargetException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return result;
 		} else {
 			return false;
 		}

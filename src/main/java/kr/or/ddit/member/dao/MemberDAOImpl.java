@@ -1,10 +1,15 @@
 package kr.or.ddit.member.dao;
 
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.apache.commons.lang3.text.WordUtils;
 
 import kr.or.ddit.db.ConnectionFactory;
 import kr.or.ddit.member.vo.MemberVO;
@@ -14,7 +19,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberVO selectMember(String username) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select mem_id, mem_password, mem_name, mem_mail ");
+		sql.append("select mem_id, mem_password, mem_name, mem_mail, mem_bir, mem_add1, mem_add2 ");
 		sql.append("from member ");
 		sql.append("where mem_id = ?");
 
@@ -48,11 +53,10 @@ public class MemberDAOImpl implements MemberDAO {
 			MemberVO vo = null; 
 				
 			if(rs.next()) {
-				vo = new MemberVO();
-				vo.setMemId(rs.getString("mem_id"));
-				vo.setMemPassword(rs.getString("mem_password"));
-				vo.setMemName(rs.getString("mem_name"));
-				vo.setMemMail(rs.getString("mem_mail"));
+//				dataMapping : entity -> object 변활할예정
+				vo = entityToObject(rs, MemberVO.class);
+				
+
 			}
 			return vo;
 		} catch (SQLException e) {
@@ -60,6 +64,32 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		
 		
+	}
+
+	private <T> T entityToObject(ResultSet rs, Class<T> resultType) throws SQLException{
+		try {
+			T resultObject = (T)resultType.getConstructor().newInstance();
+			
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCnt = rsmd.getColumnCount();
+			for(int i = 1; i <= columnCnt; i++) {
+				String columnName = rsmd.getColumnName(i);
+				String columnValue = rs.getString(columnName);
+				@SuppressWarnings("deprecation")
+				String propertyName = WordUtils.capitalize(columnName.toLowerCase(), '_').replace("_", "");
+				PropertyDescriptor pd = new PropertyDescriptor(propertyName, resultType);
+				pd.getWriteMethod().invoke(resultObject, columnValue);
+			}
+			return resultObject;
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+//		vo = new MemberVO();
+//		vo.setMemId(rs.getString("mem_id"));
+//		vo.setMemPassword(rs.getString("mem_password"));
+//		vo.setMemName(rs.getString("mem_name"));
+//		vo.setMemMail(rs.getString("mem_mail"));
+//		vo.setMemBir(rs.getString("mem_bir"));
 	}
 
 }
