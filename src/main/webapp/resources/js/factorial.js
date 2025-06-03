@@ -1,9 +1,7 @@
-/**
- * 
- */
+/* jshint esversion : 6 */
 document.addEventListener('DOMContentLoaded', () => {
   // const facFormEl = document.querySelector('#fac-form');
-  const facFormEl = window['fac-form'];
+  const facFormEl = document.getElementById('fac-form');
   facFormEl.addEventListener('submit', async (e)=>{
     e.preventDefault();
     let form = e.target;
@@ -11,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let fd = new FormData(form);
     let queryString = new URLSearchParams(fd).toString();
     console.log(queryString);
-    
+
     let res = await fetch(`${url}?${queryString}`)
     if(res.ok){
       let { result } = await res.json();
